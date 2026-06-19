@@ -49,7 +49,7 @@ header nav h1{
     text-align: center;
 }
 
-.input-btn{
+.choose{
     margin-top: 2rem;
     gap:3rem;
     display:flex;
@@ -60,7 +60,7 @@ header nav h1{
     
 }
 
-.input-btn button{
+.choose .input-btn button{
     cursor: pointer;
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -73,7 +73,7 @@ header nav h1{
 }
 
 
-.input-btn button:hover{
+.choose .input-btn button:hover{
     background-color: rgba(174, 171, 171, 0.505);
 }
 
@@ -87,4 +87,33 @@ footer {
   width: 100%;
   font-weight: bold;
   text-align: center;
+}
+
+
+.hidden{
+    visibility: hidden;
+}
+
+.blurred{
+    filter: blur(10px)
+}
+
+.play-again{
+    position:fixed;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    width: 50%;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    font-size: 50px;
+    background-color: rgba(0, 0, 0, 0.495);
+}
+
+.play-again:hover{
+    background-color: rgba(31, 31, 31, 0.495);
+
 }

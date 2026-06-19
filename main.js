@@ -40,6 +40,10 @@ function playRound(humanChoice, computeChoice){
     let computerScore = document.querySelector(".computer-score")
 
 
+    let inputButtons = document.querySelector(".input-btn")
+    let playAgain = document.querySelector(".play-again")
+
+
 
 
     if (humanChoice == computeChoice){
@@ -62,7 +66,8 @@ function playRound(humanChoice, computeChoice){
     }
 
 
-    if (humanScore == 5 || computerScore == 5){
+    if (humanScore == 5 || botScore == 5){
+        
         isGameOver = true;
         condition.textContent = "Game Over!";
         
@@ -71,6 +76,25 @@ function playRound(humanChoice, computeChoice){
         } else {
             status.textContent = "🤖 The Computer won the match! 🤖";
         }
+        
+        
+        
+        inputButtons.classList.toggle("blurred");
+        playAgain.classList.toggle("hidden");
+
+        playAgain.addEventListener("click", ()=>{
+            humanScore = 0
+            botScore = 0
+            playAgain.classList.toggle("hidden")
+            inputButtons.classList.toggle("blurred")
+            status.textContent = "Make your Choice";
+            condition.textContent = "First to 5 Wins!";
+            computerScore.textContent = "Computer: " + botScore;
+            playerScore.textContent = "Player: " + humanScore;
+        })
+
+
+
     }
 
 }
