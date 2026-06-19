@@ -1,5 +1,5 @@
 humanScore = 0;
-computerScore = 0;
+botScore = 0;
 
 
 function getComputerChoice(){
@@ -18,31 +18,46 @@ function getComputerChoice(){
 }
 
 
-
-function getHumanChoice(){
-    var humanChoice = prompt("Please enter rock, paper, or scissors:").toLowerCase();
-    if (humanChoice != "rock" && humanChoice != "paper" && humanChoice != "scissors"){
-        console.log("Invalid choice.");
-        return; 
+function chooseEmoji(choice){
+    if (choice == "paper"){
+        return "✋"
+    }else if (choice == "rock"){
+        return "✊"
+    }else if (choice == "scissors"){
+        return "✌"
     }
-    return humanChoice;
-
 }
 
+
 function playRound(humanChoice, computeChoice){
-    humanChoice = humanChoice.toLowerCase();
+
+    let status = document.querySelector('.status');
+    let condition = document.querySelector(".condition")
+    let playerEmoji = document.querySelector(".player-mark").textContent = chooseEmoji(humanChoice)
+    let computerEmoji = document.querySelector(".computer-mark").textContent = chooseEmoji(computeChoice)
+    let playerScore = document.querySelector(".player-score")
+    let computerScore = document.querySelector(".computer-score")
+
+
 
 
     if (humanChoice == computeChoice){
-        console.log("It's a tie!");
+        status.textContent = "It's a tie!"
+        condition.textContent = "";
+        
     }else if((humanChoice == "rock" && computeChoice == "scissors") ||
              (humanChoice == "paper" && computeChoice == "rock") ||
              (humanChoice == "scissors" && computeChoice == "paper")){
-        console.log("You win! " + humanChoice + " beats " + computeChoice);
+
+        status.textContent = "You Win!";
+        condition.textContent = humanChoice + " beats " + computeChoice
         humanScore++;
+        playerScore.textContent = "Player: " + humanScore;
     } else {
-        console.log("You lose! " + computeChoice + " beats " + humanChoice);
-        computerScore++;
+        status.textContent = "You Lose!";
+        condition.textContent =  computeChoice + " beats " + humanChoice;
+        botScore++;
+        computerScore.textContent = "Computer: " + botScore;
     }
 
 
@@ -52,17 +67,28 @@ function playRound(humanChoice, computeChoice){
 
 
 function playGame(){
-    for (let i =0; i<5; i++){
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
+    var humanChoice = ""
+    document.addEventListener("click", (e) =>{
+        if (e.target.id == "paper" || e.target.id == "rock" || e.target.id == "scissors"){
+            humanChoice = e.target.id;
+            const computerChoice = getComputerChoice();
+            playRound(humanChoice, computerChoice);
 
-        playRound(humanChoice, computerChoice);
-    }
+            
+        }
 
-    console.log("Computer Score: " + computerScore);
-    console.log("Human Score: "+ humanScore)
+    });
+
+
+    
+
+    
+    
+
+    
+
+    
 }
 
 
-
-playGame()
+playGame();
