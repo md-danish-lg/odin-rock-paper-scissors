@@ -1,5 +1,6 @@
 humanScore = 0;
 botScore = 0;
+let isGameOver = false;
 
 
 function getComputerChoice(){
@@ -61,6 +62,16 @@ function playRound(humanChoice, computeChoice){
     }
 
 
+    if (humanScore == 5 || computerScore == 5){
+        isGameOver = true;
+        condition.textContent = "Game Over!";
+        
+        if (humanScore === 5) {
+            status.textContent = "🏆 Congratulations! You won the match! 🏆";
+        } else {
+            status.textContent = "🤖 The Computer won the match! 🤖";
+        }
+    }
 
 }
 
@@ -68,11 +79,17 @@ function playRound(humanChoice, computeChoice){
 
 function playGame(){
     var humanChoice = ""
+
+    if (isGameOver) return;
+
     document.addEventListener("click", (e) =>{
         if (e.target.id == "paper" || e.target.id == "rock" || e.target.id == "scissors"){
             humanChoice = e.target.id;
             const computerChoice = getComputerChoice();
             playRound(humanChoice, computerChoice);
+
+
+            
 
             
         }
